@@ -1,6 +1,7 @@
 .custom-file{
-    width: 140px;
-    height: 140px;
+    margin-top: 3rem;
+    width: 100px;
+    height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
