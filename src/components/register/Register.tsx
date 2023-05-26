@@ -86,10 +86,6 @@ export const Register = () => {
           <label htmlFor="password" className="form-label">Password</label>
           <input type="password" id="password" onChange={handleOnChangePassword} className="form-control"/>
         </div>
-        <div className="row">
-          <label htmlFor="repeat_password" className="form-label">Repeat Password</label>
-          <input type="password" id="repeat_password" className="form-control"/>
-        </div>
         <div className="row mb-3">
             <label htmlFor="picture" className="form-label"></label>
             <input className="form-control" type="file" id="picture" onChange={handleOnChangePicture}/>
