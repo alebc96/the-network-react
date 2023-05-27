@@ -5,12 +5,14 @@ import { ToastContainer, toast } from 'react-toastify';
 
 interface AuthContextType {
   isAuthenticated: boolean;
+  userId: string
   login: (email: string, password: string) => void;
   logout: () => void;
 }
 
 const initialAuthContext: AuthContextType = {
   isAuthenticated: false,
+  userId: "",
   login: () => {return},
   logout: () => {return},
 };
@@ -23,6 +25,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 export const AuthProvider: React.FC<any> = ({ children }) => {
     
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [userId, setUserId] = useState("");
   const navigate = useNavigate()
 
   const login = async (email: string, password: string) => {
@@ -39,6 +42,7 @@ export const AuthProvider: React.FC<any> = ({ children }) => {
         if(response.status == 200){
             navigate("/posts")
             const res = await response.json()
+            setUserId(res?._id)
             sessionStorage.setItem('user', JSON.stringify(res))
             console.log(res)
             setIsAuthenticated(true);
@@ -80,7 +84,7 @@ export const AuthProvider: React.FC<any> = ({ children }) => {
     });
   
   return (
-    <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, login, logout, userId }}>
       {children}
       <ToastContainer/>
     </AuthContext.Provider>
