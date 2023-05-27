@@ -18,6 +18,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}/>
         <Route path="/create-posts" element={<PostCreate></PostCreate>}/>
         <Route path="/posts" element={<PostAll></PostAll>}/>
+        <Route path="/" element={<PostAll></PostAll>}/>
       </Routes>
     </AuthProvider>
     </>
