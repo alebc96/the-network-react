@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
 
 
 interface AuthContextType {
@@ -36,14 +37,17 @@ export const AuthProvider: React.FC<any> = ({ children }) => {
         })
         if(response.status == 200){
             navigate("/posts")
+            const res = await response.json()
+            sessionStorage.setItem('user', JSON.stringify(res))
+            console.log(res)
+            setIsAuthenticated(true);
+            notify()
+        }else{
+            error()
         }
-        const res = await response.json()
-        console.log(res)
-        sessionStorage.setItem('user', JSON.stringify(res))
     } catch (error) {
         console.log(error)
     }
-    setIsAuthenticated(true);
   };
 
   const logout = () => {
@@ -52,9 +56,32 @@ export const AuthProvider: React.FC<any> = ({ children }) => {
     setIsAuthenticated(false);
   };
 
+  const notify = () => toast.success("Welcom to theNetwork :D", {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+
+  const error = () => toast.error("Something is wrong :(", {
+    position: "top-right",
+    autoClose: 1500,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+    });
+  
   return (
     <AuthContext.Provider value={{ isAuthenticated, login, logout }}>
       {children}
+      <ToastContainer/>
     </AuthContext.Provider>
   );
 };

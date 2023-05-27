@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './Login.css'
 import { AuthContext } from '../../contexts/UserProvider';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const Login = () => {
 
