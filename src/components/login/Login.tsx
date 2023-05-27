@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useContext } from 'react';
+import { Link } from 'react-router-dom';
 import './Login.css'
+import { AuthContext } from '../../contexts/UserProvider';
 
 export const Login = () => {
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
+    const userContext = useContext(AuthContext)
 
 
     const handleOnChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,16 +27,7 @@ export const Login = () => {
             "password": password,
         }
         try {
-            const response = await fetch('https://the-network-ygs6.onrender.com/users/login',{
-                method: "POST",
-                headers: {"Content-Type": "application/json"},
-                body: JSON.stringify(login)
-            })
-            if(response.status == 200){
-                navigate("/posts")
-            }
-            const res = await response.json()
-            sessionStorage.setItem('user', JSON.stringify(res))
+            userContext.login(login.email, login.password)
         } catch (error) {
             console.log(error)
         }
