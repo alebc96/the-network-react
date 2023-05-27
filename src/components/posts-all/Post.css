@@ -1,0 +1,13 @@
+.card{
+    width: 32rem;
+}
+
+@media  (max-width: 720px){
+    .card{
+        width: 20rem;
+    }
+}
+
+i{
+    font-size: 28px;
+}

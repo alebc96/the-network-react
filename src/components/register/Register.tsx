@@ -31,6 +31,7 @@ export const Register = () => {
             setPicture(base64 as string)
         }
     }
+    
     //Convertir imagen a base64
     function convertToBase64 (file: any){
         return new Promise((resolve, reject)=>{

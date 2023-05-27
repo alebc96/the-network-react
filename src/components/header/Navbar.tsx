@@ -25,7 +25,7 @@ const logout = () => {
   return (
         <nav className="navbar navbar-expand-lg bg-body-tertiary" style={{boxShadow: "0px 5px 20px rgba(0, 0, 0, 0.05)"}}>
         <div className="container-fluid">
-            <Link to="/" className="navbar-brand">theNetwork</Link>
+            <Link to="/posts" className="navbar-brand">theNetwork</Link>
             {user.isAuthenticated &&  <img src={userInfo?.picture} alt="" width={"40px"} height={"40px"}/>}
            
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">

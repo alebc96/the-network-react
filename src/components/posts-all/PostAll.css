@@ -1,0 +1,20 @@
+.container-cards{
+    background-color: aquamarines;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.btn-create{
+    width: 32rem;
+    margin: 3rem auto;
+    font-size: 20px;
+}
+
+@media (max-width: 720px){
+    .btn-create{
+        width: 20rem;
+    }  
+}

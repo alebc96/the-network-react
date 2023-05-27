@@ -21,6 +21,7 @@ export const AuthContext = createContext<AuthContextType>(initialAuthContext);
 
 // se crea el provider con las funciones que se quiere comartir entre componentes
 export const AuthProvider: React.FC<any> = ({ children }) => {
+    
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const navigate = useNavigate()
 
