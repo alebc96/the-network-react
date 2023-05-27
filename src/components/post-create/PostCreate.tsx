@@ -1,11 +1,11 @@
 import './PostCreate.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import User from '../../types/user';
 import { toast } from 'react-toastify';
 
 export const PostCreate = () => {
-
+  const navigate = useNavigate()
   const [title, setTitle] = useState("")
   const [text, setText] = useState("")
   const [picture, setPicture] = useState("")
@@ -73,6 +73,7 @@ export const PostCreate = () => {
             const res = await response.json()
             if(res){
               notifyPost()
+              navigate("/posts")
             }
             console.log(res)
     } catch (error) {

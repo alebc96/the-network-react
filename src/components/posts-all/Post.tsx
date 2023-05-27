@@ -1,6 +1,20 @@
 import './Post.css'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export const Post = ({post}: any) => {
+    const navigate = useNavigate()
+    const [postInfo, setPostInfo] = useState()
+
+    useEffect(() => {
+      setPostInfo(post)
+    }, [post])
+    
+    
+    const handleComment = () => {
+        console.log(postInfo)
+        navigate(`/posts/${post?._id}`)
+    }
 
   return (
     <div className="card">
@@ -12,16 +26,18 @@ export const Post = ({post}: any) => {
                 <div className="col text-center">
                     <button className='btn'>
                         <i className="bi bi-hand-thumbs-up"></i>
+                        <span>{post?.likes}</span>
                     </button>
                     
                 </div>
                 <div className="col text-center">
                     <button className='btn'>
                         <i className="bi bi-hand-thumbs-down"></i>
+                        <span>{post?.dislike}</span>
                     </button>
                 </div>
                 <div className="col text-center">
-                    <button className='btn'>
+                    <button className='btn' onClick={handleComment}>
                         <i className="bi bi-chat-right"></i>
                     </button>
                 </div>

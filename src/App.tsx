@@ -6,6 +6,7 @@ import { Navbar } from './components/header/Navbar'
 import { AuthProvider } from './contexts/UserProvider'
 import { PostCreate } from './components/post-create/PostCreate'
 import { PostAll } from './components/posts-all/PostAll'
+import { PostDetails } from './components/post-details/PostDetails'
 
 function App() {
 
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" element={<Login></Login>}/>
         <Route path="/create-posts" element={<PostCreate></PostCreate>}/>
         <Route path="/posts" element={<PostAll></PostAll>}/>
+        <Route path="/posts/:id" element={<PostDetails></PostDetails>}/>
         <Route path="/" element={<PostAll></PostAll>}/>
       </Routes>
     </AuthProvider>
