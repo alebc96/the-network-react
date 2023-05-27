@@ -8,7 +8,7 @@ export const PostDetails = () => {
 
     const {id} = useParams()
     const [comment, setComment] = useState("")
-    const [postInfo, setPostInfo] = useState()
+    const [postInfo, setPostInfo] = useState<any>()
     const user = useContext(AuthContext)
 
     useEffect(() => {
@@ -51,7 +51,6 @@ export const PostDetails = () => {
         }
 
         const url = `https://the-network-ygs6.onrender.com/posts/comments?${queryParams.toString()}`
-        console.log(url)
         
         const text = {
             "body": comment
