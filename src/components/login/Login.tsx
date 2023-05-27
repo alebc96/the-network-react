@@ -50,7 +50,7 @@ export const Login = () => {
         </div>
         <div className="row text-center">
           <button type='submit' className='btn btn-primary mb-3'>Sing in</button>
-          <Link to="/register">You have an account? Login here</Link>
+          <Link to="/register">You have an account? Register here</Link>
         </div>
       </form>
     </div>
