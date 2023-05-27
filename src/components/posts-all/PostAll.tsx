@@ -25,7 +25,7 @@ export const PostAll = () => {
     }
     
   return (
-    <div className="container text-center">
+    <div className="container">
         <div className="row text-center">
             {user?.isAuthenticated 
             ? 
@@ -40,7 +40,6 @@ export const PostAll = () => {
             
         </div>
         <div className="container-cards">
-            
             {allPosts.map((post: any) => (<Post key={post?._id} post = {post}></Post>))}
         </div>
     </div>
