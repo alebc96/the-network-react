@@ -6,7 +6,7 @@ export const CommentsAll = ({comments}: any) => {
   return (
     <div className="container ">
         {comments?.map((comment: any) => (
-            <CommentCard comment = {comment}/>
+            <CommentCard key={comment._id} comment = {comment}/>
         ))}
     </div>
   )

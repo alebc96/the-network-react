@@ -88,7 +88,7 @@ export const Post = ({post}: any) => {
     }
 
 
-    const error = () => toast.info("Login to comment or like a post or comment", {
+    const error = () => toast.info("Login to comment or like a post", {
         position: "top-right",
         autoClose: 1500,
         hideProgressBar: false,

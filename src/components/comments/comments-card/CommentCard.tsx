@@ -1,6 +1,7 @@
-import {useContext, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import { AuthContext } from '../../../contexts/UserProvider';
 import { toast } from 'react-toastify';
+import './CommentCard.css'
 //import { useNavigate } from 'react-router-dom';
 
 export const CommentCard = ({comment}: any) => {
@@ -9,6 +10,12 @@ export const CommentCard = ({comment}: any) => {
     const user = useContext(AuthContext)
     const [like, setLike] = useState<number>(comment?.likes || 0)
     const [dislike, setDislike] = useState<number>(comment?.dislikes || 0)
+    const [userInfo, setUserInfo] = useState<any>({})
+
+    useEffect(() => {
+        getUserInfo()
+    }, [])
+    
 
     const handleLike = async () => {
         if(user.isAuthenticated){
@@ -82,12 +89,33 @@ export const CommentCard = ({comment}: any) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
+    });
+
+    const getUserInfo = async () => {
+        const queryParams = new URLSearchParams()
+        queryParams.append("userId", comment?.user_id)
+        const url = `https://the-network-ygs6.onrender.com/users/user?${queryParams.toString()}`
+        try {
+            const response = await fetch(url)
+            if(response.status == 200){
+                const userFinded = await response.json()
+                if(userFinded){
+                    setUserInfo(userFinded)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
 
   return (
     <div className="post-container row d-flex align-items-center justify-content-center mb-2">
         <div className="card bg-primary-subtle">
+        <div className="row d-felx align-items-center">
+            <img className='icon-picture-card col-6 ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
+            <h4 className='col-6'>{userInfo?.username}</h4>
+        </div>
             <div className="card-body">
                 {comment?.body}
             </div>

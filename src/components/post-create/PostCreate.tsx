@@ -94,8 +94,14 @@ export const PostCreate = () => {
     theme: "light",
     });
 
+    const handleBack = () => {
+      navigate("/posts")
+  }
+
   return (
-    <div className='container d-flex justify-content-center align-items-center mb-5' style={{height: "80%"}}>
+    <>
+      <button type="button" className="btn ms-5" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
+    <div className='container d-flex flex-column mb-5' style={{height: "80%"}}>
         <form className='form container-sm' onSubmit={handleSubmitPost}>
           <div className="row text-center mt-4">
             <h2>Create a Post</h2>
@@ -123,5 +129,6 @@ export const PostCreate = () => {
           </div>
         </form>
     </div>
+    </>
   )
 }
