@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import User from '../../types/user';
 import { toast } from 'react-toastify';
 
+import defaultImage from "../../assets/img_98811.png"
+
 export const PostCreate = () => {
   const navigate = useNavigate()
   const [title, setTitle] = useState("")
@@ -75,7 +77,7 @@ export const PostCreate = () => {
               notifyPost()
               navigate("/posts")
             }
-            console.log(res)
+            //console.log(res)
     } catch (error) {
       console.log(error)
     }
@@ -112,7 +114,7 @@ export const PostCreate = () => {
           </div>
           <div className="row d-flex justify-content-center align-items-center">
               <label htmlFor='picture' className='post-image'>
-                  <img src={picture || "https://pic.onlinewebfonts.com/svg/img_98811.png"} alt=""/>
+                  <img src={picture || defaultImage} alt=""/>
               </label>
           </div>
           <div className="row text-center">

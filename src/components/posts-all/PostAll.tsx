@@ -30,11 +30,11 @@ export const PostAll = () => {
             {user?.isAuthenticated 
             ? 
             <Link to={"/create-posts"} className='btn btn-primary btn-create'>
-                Create post <i className="bi bi-pencil"></i>
+                What are you thinking <i className="bi bi-pencil"></i>
             </Link>
             : 
             <Link to={"/login"} className='btn btn-primary btn-create'>
-                Login to post <i className="bi bi-pencil"></i>
+                Login to post <i className="bi bi-file-lock"></i>
             </Link>
             }
             

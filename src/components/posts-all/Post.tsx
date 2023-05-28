@@ -1,20 +1,85 @@
 import './Post.css'
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/UserProvider';
+import { toast } from 'react-toastify';
 
 export const Post = ({post}: any) => {
+
+    const user = useContext(AuthContext)
     const navigate = useNavigate()
-    const [postInfo, setPostInfo] = useState()
+    const [postInfo, setPostInfo] = useState<any>(post)
+    const [likes, setLikes] = useState<number>(post?.likes)
+    const [dislikes, setDislikes] = useState<number>(post?.dislike)
 
     useEffect(() => {
       setPostInfo(post)
-    }, [post])
+    }, [])
     
     
     const handleComment = () => {
-        console.log(postInfo)
+        //console.log(postInfo)
         navigate(`/posts/${post?._id}`)
     }
+
+    const handleLike = async () => {
+        if(user.isAuthenticated){
+            const queryParams = new URLSearchParams()
+            queryParams.append("post_id", postInfo?._id)
+
+            const url = `https://the-network-ygs6.onrender.com/posts/like?${queryParams.toString()}`
+            try {
+                const response = await fetch(url, {
+                    method: "PUT",
+                    headers: {"Content-Type": "application/json"}
+                })
+                if(response.status == 200){
+                    setLikes(likes + 1)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+        }else{
+            error()
+        }
+    }
+
+    const handleDislike = async () => {
+        if(user.isAuthenticated){
+            const queryParams = new URLSearchParams()
+            queryParams.append("post_id", postInfo?._id)
+
+            const url = `https://the-network-ygs6.onrender.com/posts/dislike?${queryParams.toString()}`
+            try {
+                const response = await fetch(url, {
+                    method: "PUT",
+                    headers: {"Content-Type": "application/json"}
+                })
+                if(response.status == 200){
+                    setDislikes(dislikes + 1)
+                }
+            } catch (error) {
+                console.log(error)
+            }
+
+        }else{
+            error()
+        }
+    }
+
+
+    const error = () => toast.info("Login to comment or like a post or comment", {
+        position: "top-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        });
+
 
   return (
     <div className="card">
@@ -24,16 +89,16 @@ export const Post = ({post}: any) => {
             <p className="card-text">{post?.body}</p>
             <div className="row">
                 <div className="col text-center">
-                    <button className='btn'>
+                    <button type='button' className='btn' onClick={handleLike}>
                         <i className="bi bi-hand-thumbs-up"></i>
-                        <span>{post?.likes}</span>
+                        <span>{likes}</span>
                     </button>
                     
                 </div>
                 <div className="col text-center">
-                    <button className='btn'>
+                    <button type='button' className='btn' onClick={handleDislike}>
                         <i className="bi bi-hand-thumbs-down"></i>
-                        <span>{post?.dislike}</span>
+                        <span>{dislikes}</span>
                     </button>
                 </div>
                 <div className="col text-center">
