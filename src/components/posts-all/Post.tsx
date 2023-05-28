@@ -9,13 +9,32 @@ export const Post = ({post}: any) => {
     const user = useContext(AuthContext)
     const navigate = useNavigate()
     const [postInfo, setPostInfo] = useState<any>(post)
+    const [userInfo, setUserInfo] = useState<any>({})
     const [likes, setLikes] = useState<number>(post?.likes)
     const [dislikes, setDislikes] = useState<number>(post?.dislike)
 
     useEffect(() => {
       setPostInfo(post)
+      getUserInfo()
     }, [])
-    
+
+    const getUserInfo = async () => {
+        const queryParams = new URLSearchParams()
+        queryParams.append("userId", post?.user_id)
+        const url = `https://the-network-ygs6.onrender.com/users/user?${queryParams.toString()}`
+        try {
+            const response = await fetch(url)
+            if(response.status == 200){
+                const userFinded = await response.json()
+                if(userFinded){
+                    setUserInfo(userFinded)
+                }
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+        
     
     const handleComment = () => {
         //console.log(postInfo)
@@ -83,6 +102,10 @@ export const Post = ({post}: any) => {
 
   return (
     <div className="card">
+        <div className="row d-felx align-items-center">
+            <img className='icon-picture col-6 ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
+            <h4 className='col-6'>{userInfo?.username}</h4>
+        </div>
         <img src={post?.picture} className="card-img-top" alt="..."/>
         <div className="card-body">
             <h5 className="card-title">{post?.title}</h5>
