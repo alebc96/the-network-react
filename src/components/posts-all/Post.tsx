@@ -1,13 +1,14 @@
 import './Post.css'
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserProvider';
 import { toast } from 'react-toastify';
 
-export const Post = ({post}: any) => {
+export const Post = ({post, handleDelete}: any) => {
 
     const user = useContext(AuthContext)
     const navigate = useNavigate()
+    const location = useLocation()
     const [postInfo, setPostInfo] = useState<any>(post)
     const [userInfo, setUserInfo] = useState<any>({})
     const [likes, setLikes] = useState<number>(post?.likes)
@@ -16,7 +17,8 @@ export const Post = ({post}: any) => {
     useEffect(() => {
       setPostInfo(post)
       getUserInfo()
-    }, [])
+      console.log(location.pathname)
+    }, [postInfo])
 
     const getUserInfo = async () => {
         const queryParams = new URLSearchParams()
@@ -97,14 +99,26 @@ export const Post = ({post}: any) => {
         draggable: true,
         progress: undefined,
         theme: "light",
-        });
-
+    });
 
   return (
     <div className="card">
-        <div className="row d-felx align-items-center">
-            <img className='icon-picture col-6 ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
-            <h4 className='col-6'>{userInfo?.username}</h4>
+        <div className="row d-felx align-items-center justify-content-between">
+            <div className='row d-felx align-items-center justify-content-between"'>
+                <img className='icon-picture ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
+                <h4 className='col'>{userInfo?.username}</h4>
+                <div className="col text-center">
+                {
+                    user.userId == post?.user_id && user.isAuthenticated && location.pathname == "/my-posts"
+                    ?
+                    <button className='btn' onClick={() => handleDelete(post?._id)}>
+                        <i className="bi bi-trash3"></i>
+                    </button>
+                    :
+                    <></>
+                }
+                </div>
+            </div>
         </div>
         <img src={post?.picture} className="card-img-top" alt="..."/>
         <div className="card-body">
@@ -134,3 +148,6 @@ export const Post = ({post}: any) => {
     </div>
   )
 }
+
+//testuser@test.test
+//test.123

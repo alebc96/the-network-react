@@ -94,13 +94,13 @@ export const PostCreate = () => {
     theme: "light",
     });
 
-    const handleBack = () => {
+  const handleBack = () => {
       navigate("/posts")
   }
 
   return (
     <>
-      <button type="button" className="btn ms-5" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
+      <button type="button" className="btn ms-5 mt-5" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
     <div className='container d-flex flex-column mb-5' style={{height: "80%"}}>
         <form className='form container-sm' onSubmit={handleSubmitPost}>
           <div className="row text-center mt-4">
@@ -114,9 +114,8 @@ export const PostCreate = () => {
             <label htmlFor="text" className="form-label">Text</label>
             <input type="text" id="text" className="form-control" onChange={handleOnChangeText}/>
           </div>
-          <div className="row mb-3">
-              <label htmlFor="picture" className="form-label"></label>
-              <input className="form-control" type="file" id="picture" onChange={handleOnChangePicture}/>
+          <div className="row mb-3 mt-3">
+              <input className="form-control" placeholder='select picture' type="file" id="picture" onChange={handleOnChangePicture}/>
           </div>
           <div className="row d-flex justify-content-center align-items-center">
               <label htmlFor='picture' className='post-image'>

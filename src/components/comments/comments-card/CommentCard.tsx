@@ -114,7 +114,7 @@ export const CommentCard = ({comment}: any) => {
         <div className="card bg-primary-subtle">
         <div className="row d-felx align-items-center">
             <img className='icon-picture-card col-6 ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
-            <h4 className='col-6'>{userInfo?.username}</h4>
+            <h5 className='col-6'>{userInfo?.username}</h5>
         </div>
             <div className="card-body">
                 {comment?.body}

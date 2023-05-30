@@ -46,6 +46,12 @@ const logout = () => {
                     <li className="nav-item">
                         <button type='button' className="btn" onClick={logout}>Logout</button>
                     </li>
+                    <li className="nav-item">
+                      <Link to="/my-posts" style={{textDecoration: "none"}} className="nav-link active" aria-current="page">My posts</Link>
+                    </li>
+                    <li className="nav-item">
+                      <Link to="/search-friends" style={{textDecoration: "none"}} className="nav-link active" aria-current="page">Search friends</Link>
+                    </li>
                 </ul> 
               }
             </div>

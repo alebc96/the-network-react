@@ -52,6 +52,10 @@ export const Login = () => {
           <button type='submit' className='btn btn-primary mb-3'>Sing in</button>
           <Link to="/register">You have an account? Register here</Link>
         </div>
+        <div className='row mt-3'>
+          <p>Test user: testuser@test.test</p>
+          <p>test user password: test.123</p>
+        </div>
       </form>
     </div>
   )
