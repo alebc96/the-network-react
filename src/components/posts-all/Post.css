@@ -21,6 +21,7 @@ i{
     background-color: #f2f2f2;
 }
 
-.icon-picture > img{
-   
-}
+.removing {
+    opacity: 0;
+    transition: opacity 0.3s ease-out;
+  }

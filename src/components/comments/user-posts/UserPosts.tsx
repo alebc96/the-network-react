@@ -55,13 +55,13 @@ export const UserPosts = () => {
     }
 }
 
-const handleBack = () => {
-  navigate("/posts")
-}
+  const handleBack = () => {
+    navigate("/posts")
+  }
   
   return (
     <>
-     <button type="button" className="btn ms-5 mt-5" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
+      <button type="button" className="btn ms-5 mt-5" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
     <div className="container d-flex flex-column align-items-center gap-3">
       
       {

@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import User from '../../types/user';
 import { FriendCard } from './FriendCard';
 import { Spinner } from '../spinner/Spinner';
+import { useNavigate } from 'react-router-dom';
 
 export const Friends = () => {
 
     const [users, setUsers] = useState<User[]>([])
+    const navigate = useNavigate()
 
     useEffect(() => {
         getAllUsers()
@@ -26,7 +28,13 @@ export const Friends = () => {
        setUsers(userFiltered)
     }
 
+    const handleBack = () => {
+        navigate("/posts")
+      }
+
   return (
+    <>
+     <button type="button" className="btn ms-5 mt-3" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
     <div className='container d-flex flex-column justify-content-center align-items-center'>
         <h2 className='mt-4 mb-4'>Search new friends</h2>
         {
@@ -39,5 +47,6 @@ export const Friends = () => {
             <Spinner></Spinner>
         }
     </div>
+    </>
   )
 }

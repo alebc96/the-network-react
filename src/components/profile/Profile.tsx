@@ -38,7 +38,13 @@ export const Profile = () => {
         navigate("/login")
     }
 
+    const handleBack = () => {
+        navigate("/posts")
+    }
+
   return (
+    <>
+    <button type="button" className="btn ms-5 mt-3" onClick={handleBack}><i className="bi bi-arrow-left-circle"></i></button>
     <div className="container d-flex flex-column align-items-center">
         <div className="card text-center mb-3 mt-5" style={{width: "20rem"}}>
             <div className="card-body">
@@ -47,11 +53,12 @@ export const Profile = () => {
                 <p className="card-text fs-5">email: {userInfo?.email}</p>
                 <p className="card-text fs-5">Posts: {0}</p>
                 <div className="row mt-4 mb-4 ms-2 me-2">
-                    <button className='btn btn-secondary' onClick={logout}> Logout</button>
+                    <button className='btn' onClick={logout}> Logout</button>
                 </div>
             </div>
         </div>
     </div>
+    </>
         
   )
 }

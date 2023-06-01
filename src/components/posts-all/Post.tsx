@@ -107,7 +107,7 @@ export const Post = ({post, handleDelete}: any) => {
     });
 
   return (
-    <div className="card">
+    <div className={`card`}>
         <div className="row d-felx align-items-center justify-content-between">
             <div className='row d-felx align-items-center justify-content-between"'>
                 <img className='icon-picture ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" onClick={handleClickUserIcon}/>
