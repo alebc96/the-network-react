@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import User from '../../types/user';
 import { FriendCard } from './FriendCard';
+import { Spinner } from '../spinner/Spinner';
 
 export const Friends = () => {
 
@@ -28,9 +29,15 @@ export const Friends = () => {
   return (
     <div className='container d-flex flex-column justify-content-center align-items-center'>
         <h2 className='mt-4 mb-4'>Search new friends</h2>
-        {users.map((user: User) => (
-            <FriendCard user = {user} key={user._id} discartFriend = {discartFriend}/>
-        ))}
+        {
+            users.length !== 0
+            ?
+            users.map((user: User) => (
+                <FriendCard user = {user} key={user._id} discartFriend = {discartFriend}/>
+            ))
+            :
+            <Spinner></Spinner>
+        }
     </div>
   )
 }

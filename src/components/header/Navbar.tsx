@@ -52,6 +52,9 @@ const logout = () => {
                     <li className="nav-item">
                       <Link to="/search-friends" style={{textDecoration: "none"}} className="nav-link active" aria-current="page">Search friends</Link>
                     </li>
+                    <li className="nav-item">
+                      <Link to="/profile" style={{textDecoration: "none"}} className="nav-link active" aria-current="page">Profile</Link>
+                    </li>
                 </ul> 
               }
             </div>

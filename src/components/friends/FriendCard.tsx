@@ -25,10 +25,10 @@ export const FriendCard = (props : {user: User, discartFriend: any} ) => {
                 </div>
                 <div className="row mt-2">
                     <button className="btn col-6">
-                        <i className="bi bi-person-add"></i>
+                        <i className="bi bi-person-add text-primary fs-2"></i>
                     </button>
                     <button className="btn col-6" onClick={handleDiscard}>
-                        <i className="bi bi-person-dash"></i>
+                        <i className="bi bi-person-dash text-secondary fs-2"></i>
                     </button>
                 </div>
             </div>

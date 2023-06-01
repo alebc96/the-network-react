@@ -3,6 +3,7 @@ import { useState, useEffect, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserProvider';
 import { toast } from 'react-toastify';
+import User from '../../types/user';
 
 export const Post = ({post, handleDelete}: any) => {
 
@@ -10,7 +11,7 @@ export const Post = ({post, handleDelete}: any) => {
     const navigate = useNavigate()
     const location = useLocation()
     const [postInfo, setPostInfo] = useState<any>(post)
-    const [userInfo, setUserInfo] = useState<any>({})
+    const [userInfo, setUserInfo] = useState<User>()
     const [likes, setLikes] = useState<number>(post?.likes)
     const [dislikes, setDislikes] = useState<number>(post?.dislike)
 
@@ -41,6 +42,10 @@ export const Post = ({post, handleDelete}: any) => {
     const handleComment = () => {
         //console.log(postInfo)
         navigate(`/posts/${post?._id}`)
+    }
+
+    const handleClickUserIcon = () => {
+        navigate(`/users/${userInfo?._id}`)
     }
 
     const handleLike = async () => {
@@ -105,7 +110,7 @@ export const Post = ({post, handleDelete}: any) => {
     <div className="card">
         <div className="row d-felx align-items-center justify-content-between">
             <div className='row d-felx align-items-center justify-content-between"'>
-                <img className='icon-picture ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" />
+                <img className='icon-picture ms-4 mb-2 mt-2' src={userInfo?.picture} alt="user picture" onClick={handleClickUserIcon}/>
                 <h4 className='col'>{userInfo?.username}</h4>
                 <div className="col text-center">
                 {

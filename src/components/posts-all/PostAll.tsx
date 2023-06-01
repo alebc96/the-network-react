@@ -3,6 +3,7 @@ import { Post } from './Post';
 import './PostAll.css'
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/UserProvider';
+import { Spinner } from '../spinner/Spinner';
 
 export const PostAll = () => {
 
@@ -40,7 +41,13 @@ export const PostAll = () => {
             
         </div>
         <div className="container-cards">
-            {allPosts.map((post: any) => (<Post key={post?._id} post = {post}></Post>))}
+            {
+                allPosts.length !== 0
+                ?
+                allPosts.map((post: any) => (<Post key={post?._id} post = {post}></Post>))
+                :
+                <Spinner></Spinner>
+            }
         </div>
     </div>
   )

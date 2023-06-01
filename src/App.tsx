@@ -9,6 +9,8 @@ import { PostAll } from './components/posts-all/PostAll'
 import { PostDetails } from './components/post-details/PostDetails'
 import { UserPosts } from './components/comments/user-posts/UserPosts'
 import { Friends } from './components/friends/Friends'
+import { Profile } from './components/profile/Profile'
+import { ProfileUser } from './components/profile/ProfileUser'
 
 function App() {
 
@@ -19,11 +21,13 @@ function App() {
       <Routes>
         <Route path="/register" element={<Register></Register>}/>
         <Route path="/login" element={<Login></Login>}/>
+        <Route path="/profile" element={<Profile></Profile>}/>
         <Route path="/create-posts" element={<PostCreate></PostCreate>}/>
         <Route path="/posts" element={<PostAll></PostAll>}/>
         <Route path="/my-posts" element={<UserPosts></UserPosts>}/>
         <Route path="/search-friends" element={<Friends></Friends>}/>
         <Route path="/posts/:id" element={<PostDetails></PostDetails>}/>
+        <Route path="/users/:id" element={<ProfileUser></ProfileUser>}/>
         <Route path="/" element={<PostAll></PostAll>}/>
       </Routes>
     </AuthProvider>
